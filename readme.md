@@ -6,4 +6,13 @@
 6. create learnphp project folder `mkdir learnphp`
 7. go into it and open in vscode `code .`
 8. create readme.md file (can be empty) 
-9. create new git repo from learnphp and push it to github
+9. set your user.name and user.email in git
+
+
+`git config --global user.name "Kaspar Martin Suursalu"`
+
+
+`git config --global user.email "kasparsu@gmail.com"`
+
+
+10. create new git repo from learnphp and push it to github
