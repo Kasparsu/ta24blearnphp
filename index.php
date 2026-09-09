@@ -1,15 +1,20 @@
 <?php
-$test = 'hello';
-$test = 'hello' . 'world' . '!';
-$test = $test . '!!!!!';
-$test .= '!!!!!';
-$name = 'Kaspar';
-$age = 33;
-$test = $name . ' is ' . $age . ' years old!';
-$test = "$name is $age years old!";
-$test = "hello\n\nworld!";
-$test = <<<END
-cool stuff here
-multi line 
-END;
+
+$numbers = array(1,2,3);
+$numbers = [1, 2, 3];
+var_dump($numbers[1]);
+$numbers[2] = 5;
+var_dump($numbers);
+$test = [1, 'sasd', true, [1, 2, 3]];
 var_dump($test);
+var_dump($test[3][1]);
+$test = [
+    'name' => 'Kaspar',
+    'age' => 33,
+    1,
+    2,
+    3,
+    'color' => 'green'
+];
+var_dump($test);
+var_dump($test['name']);
