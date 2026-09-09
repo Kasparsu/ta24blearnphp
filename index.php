@@ -16,6 +16,7 @@ $test = [
     3,
     'color' => 'green',
     'music' => 'punk',
+    5
 ];
 var_dump($test);
 var_dump($test['name']);
