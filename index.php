@@ -10,15 +10,12 @@ class Box {
     }
 }
 
-$num1 = 1;
-$num2 = &$num1;
-$num1 = 2;
-var_dump($num1, $num2);
+class MetalBox extends Box {
+    public $weightPerUnit;
+    public function mass(){
+        return $this->volume() * $this->weightPerUnit;
+    }
+}
 
-$box1 = new Box();
-$box1->width = 1;
-$box2 = clone $box1;
-$box2->width = $box1->width;
-$box1->width = 2;
-
-var_dump($box1, $box2);
+$metal1 = new MetalBox();
+var_dump($metal1);
