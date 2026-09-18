@@ -1,66 +1,59 @@
 <?php
 
 class Box {
-    use HasColor, HasSmell;
-    public int $width;
-    private int $height;
-    protected int $length;
+
+
+    public function __construct(public int $width, private int $height, protected int $length) {
+
+        var_dump('Box was created');
+    }
 
     public function volume(){
         return $this->width * $this->height * $this->length;
     }
 
-    public function setHeight(int $height) {
-        if($height < 0) {
-            $this->height = 0;
-        } else {
-            $this->height = $height;
-        }
+    public function __set($name, $value) {
+        var_dump($name, $value);
     }
 
-    public function getHeight(){
-        return $this->height;
+    public function __get($name) {
+        var_dump($name);
+        return 'Some value';
     }
 
-    public function test1(){
-        $this->length = 10;
-        var_dump($this->length);
-    }
-}
-
-class MetalBox extends Box {
-    use HasColor;
-    public $weightPerUnit;
-    public function mass(){
-        return $this->volume() * $this->weightPerUnit;
+    public function __call($name, $args) {
+        var_dump($name, $args);
     }
 
-    public function test2(){
-        $this->height = 10;
-        var_dump($this->height);
+    public function __invoke($a, $b)
+    {
+        var_dump($a, $b);
+    }
+
+    public function __toString()
+    {
+        return 'Im a Box whoopty doo!';
+    }
+    
+    public function __destruct()
+    {
+        var_dump('Box was Destroyed');
     }
 }
 
-trait HasColor {
-    public $color;
-    public function setColor($color) {
-        $this->color = $color;
-    }
+function test() {
+    $box2 = new Box(1,2,3);
 }
-
-trait HasSmell {
-    public $smell;
-    public function setSmell($smell) {
-        $this->smell = $smell;
-    }
-}
+test();
 
 
 
-$box1 = new Box();
-$box1->test1();
+$box1 = new Box(1, 2, 3);
+$box1->hello = 'LOL';
+var_dump($box1->yolo);
+$box1->cool(1, 'asdads', 41);
+$box1(1, 'asdads');
 
-
-$metal1 = new MetalBox();
-$metal1->test2();
-var_dump($metal1);
+$box1 = 1;
+var_dump($box1);
+echo $box1;
