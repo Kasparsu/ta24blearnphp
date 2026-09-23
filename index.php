@@ -1,30 +1,42 @@
 <?php
+// library
 
-class Box {
-
-    public static $count;
-
-    public function __construct(public int $width, private int $height, protected int $length) {
-
-    }
-
-    public function volume() {
-        
-        return $this->width * $this->height * $this->length;
-    }
-
-    public static function test() {
-        var_dump(self::$count);
-        var_dump(self::class);
-        var_dump(static::class);
+class Job {
+    public function task(Logger $logger) {
+        for($i=0; $i<10; $i++) {
+            //we do some task (video editing, file processing etc)
+            
+            $logger->log("Task $i completed!");
+        }
     }
 }
 
-class MetalBox extends Box {
-
+class ConsoleLogger implements Logger {
+    public function log($message) {
+        echo "$message\n";
+    }
 }
 
-Box::$count = 1;
-Box::$count = 2;
-MetalBox::test();
-var_dump(Box::$count, Box::$count);
+class NothingLogger implements Logger {
+    public function log($message) {
+
+    }
+}
+
+interface Logger {
+    public function log($message);
+}
+
+// user code
+
+class FileLogger implements Logger {
+    public function log($message) {
+        $file = fopen('log.txt', 'a');
+        fwrite($file, "$message\n");
+        fclose($file);
+    }
+}
+
+$job = new Job();
+$logger = new FileLogger();
+$job->task($logger);
