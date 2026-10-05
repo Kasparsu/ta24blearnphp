@@ -33,7 +33,7 @@ class PublicController
                 'body' => 'Some World body 4',
             ],
         ];
-        include __DIR__ . '/../../views/index.php';
+        view('index', compact('title', 'posts'));
     }
 
     public function us()
@@ -64,6 +64,6 @@ class PublicController
                 'body' => 'Some U.S body 4',
             ],
         ];
-        include __DIR__ . '/../../views/us.php';
+        view('us', compact('posts'));
     }
 }
