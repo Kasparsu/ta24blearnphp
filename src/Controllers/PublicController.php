@@ -2,29 +2,17 @@
 
 namespace App\Controllers;
 
-use Exception;
-use PDO;
-use PDOException;
+use App\DB;
 
 class PublicController
 {
     public function index()
     {
-        $servername = "localhost:33061";
-        $username = "root";
-        $password = "example";
-        $dbname = "learnphp";
-
-        try {
-            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-            // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected successfully";
-        } catch (PDOException $e) {
-            echo "Connection failed: " . $e->getMessage();
-        }
-
-
+        $db = new DB();
+        $posts = $db->all('posts');
+        dump($posts);
+        $users = $db->all('users');
+        dump($users);
         $title = 'World';
         view('index', compact('title', 'posts'));
     }
