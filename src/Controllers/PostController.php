@@ -23,4 +23,28 @@ class PostController
         $post->save();
         redirect('/admin/posts');
     }
+
+    public function view() {
+        $post = Post::find($_GET['id']);
+        view('posts/view', compact('post'));
+    }
+
+    public function edit() {
+        $post = Post::find($_GET['id']);
+        view('posts/edit', compact('post'));
+    }
+
+    public function update() {
+        $post = Post::find($_GET['id']);
+        $post->title = $_POST['title'];
+        $post->body = $_POST['body'];
+        $post->save();
+        redirect('/admin/posts');
+    }
+
+    public function delete() {
+        $post = Post::find($_GET['id']);
+        $post->delete();
+        redirect('/admin/posts');
+    }
 }
