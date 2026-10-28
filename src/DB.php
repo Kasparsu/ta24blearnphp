@@ -38,6 +38,13 @@ class DB {
         return $result->fetch();
     }
 
+    public function where(string $table, string $class, $field, $value){
+        $sql = "SELECT * FROM $table WHERE $field='$value'";
+        $result = $this->conn->query($sql);
+        $result->setFetchMode(PDO::FETCH_CLASS, $class);
+        return $result->fetchAll();
+    }
+
     public function insert($table, $fields) {
         $fieldNames = array_keys($fields);
         $fieldNamesText = implode(', ', $fieldNames);

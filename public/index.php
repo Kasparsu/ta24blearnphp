@@ -14,6 +14,7 @@ spl_autoload_register(function ($class) {
 });
 
 use App\Router;
+session_start();
 
 require __DIR__ . '/../helpers.php';
 require __DIR__ . '/../routes.php';
