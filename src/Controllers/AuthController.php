@@ -12,7 +12,7 @@ class AuthController {
     public function login() {
         $users = User::where('email', $_POST['email']);
         $user = $users[0] ?? null;
-        if(!$user || password_verify($_POST['password'], $user->password)) {
+        if(!$user || !password_verify($_POST['password'], $user->password)) {
             return redirect('/login');
         }
         $_SESSION['userID'] = $user->id;
